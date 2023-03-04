@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>01/1</title>
+    <title>이터러블 프로그래밍 혹은 리스트 프로세싱(L is p)</title>
     <script src='../fx.js'></script>
 </head>
 <body>
@@ -47,6 +47,39 @@
                 if (--limit == 0) break;
             }
             console.log(acc);
+        }
+        f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    </script>
+    <br/>
+
+    4. break를 take로
+    <script>
+        function f1(limit, list) {
+            let acc = 0;
+            for (const a of L.take(limit, L.map(a => a * a, L.filter(a => a % 2, list)))) {
+                acc += a;
+            }
+            console.log(acc);
+        }
+        f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    </script>
+    <br/>
+
+    5. 축약 및 합산을 reduce로
+    <script>
+        const add = (a, b) => a + b;
+        function f1(limit, list) {
+            // let acc = _.reduce(add,
+            //     L.take(limit, 
+            //         L.map(a => a * a, 
+            //             L.filter(a => a % 2, list))));
+            // console.log(acc);
+            _.go(list,
+            L.filter(a => a % 2),
+            L.map(a => a * a),
+            L.take(limit),
+            _.reduce(add),
+            console.log);
         }
         f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     </script>
