@@ -25,7 +25,7 @@
 
     2. if를 filter로
     <script>
-        function f1(limit, list) {
+        function f2(limit, list) {
             let acc = 0;
             for (const a of L.filter(a => a % 2, list)) {
                 const b = a * a;
@@ -34,13 +34,13 @@
             }
             console.log(acc);
         }
-        f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        f2(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     </script>
     <br/>
 
     3. 값 변화 후 변수 할당을 map으로
     <script>
-        function f1(limit, list) {
+        function f3(limit, list) {
             let acc = 0;
             for (const a of L.map(a => a * a, L.filter(a => a % 2, list))) {
                 acc += a;
@@ -48,27 +48,27 @@
             }
             console.log(acc);
         }
-        f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        f3(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     </script>
     <br/>
 
     4. break를 take로
     <script>
-        function f1(limit, list) {
+        function f4(limit, list) {
             let acc = 0;
             for (const a of L.take(limit, L.map(a => a * a, L.filter(a => a % 2, list)))) {
                 acc += a;
             }
             console.log(acc);
         }
-        f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        f4(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     </script>
     <br/>
 
     5. 축약 및 합산을 reduce로
     <script>
         const add = (a, b) => a + b;
-        function f1(limit, list) {
+        function f5(limit, list) {
             // let acc = _.reduce(add,
             //     L.take(limit, 
             //         L.map(a => a * a, 
@@ -81,25 +81,39 @@
             _.reduce(add),
             console.log);
         }
-        f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        f5(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     </script>
     <br/>
 
     6. while을 range로
     <script>
-        function f3(end) {
-            let i = 0;
-            while (i < end) {
-                console.log(i);
-                i++;
-            }
-        }
-        f3(10);
+        // function f6(end) {
+        //     let i = 0;
+        //     while (i < end) {
+        //         console.log(i);
+        //         i++;
+        //     }
+        // }
+        // f6(10);
 
-        function f4(end) {
-            _.each(console.log, L.range(end));
+        function f6(end) {
+            //_.each(console.log, L.range(end));
+            _.each(console.log, L.range(1, end, 2));
         }
-        f4(10);
+        f6(10);
     </script>
+     <br/>
+
+     7.효과를 each로 구분
+     <script>
+        // each 함수는 함수의 실행결과가 인자값과 동일한 특이한 함수
+        function f7(end) {
+            _.go(
+                L.range(1, end, 2),
+                _.each(console.log)
+            );
+        }
+        f7(10);
+     </script>
 </body>
 </html>
