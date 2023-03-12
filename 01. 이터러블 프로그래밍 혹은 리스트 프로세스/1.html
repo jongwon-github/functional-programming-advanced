@@ -115,5 +115,18 @@
         }
         f7(10);
      </script>
+     <br/>
+
+     8. 추억의 별 그리기
+     <script>
+        _.go(
+            _.range(1, 6),
+            _.map(_.range),
+            _.map(_.map(_ => '*')),
+            _.map(_.reduce((a, b) => `${a}${b}`)),
+            _.reduce((a, b) => `${a}\n${b}`),
+            console.log
+        );
+     </script>
 </body>
 </html>
