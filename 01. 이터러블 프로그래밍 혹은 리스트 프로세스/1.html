@@ -128,5 +128,21 @@
             console.log
         );
      </script>
+     <br/>
+
+     9. 추억의 구구단
+     <script>
+        const join = sep => _.reduce((a, b) => `${a}${sep}${b}`);
+        _.go(
+            _.range(2, 10),
+            _.map(a => _.go(
+                _.range(1, 10),
+                _.map(b => `${a}x${b}=${a*b}`),
+                join(`\n`)
+            )),
+            join(`\n\n`),
+            console.log
+        );
+     </script>
 </body>
 </html>
