@@ -155,5 +155,15 @@
       );
       console.log(queryToObject("a=1&c=CC&d=DD"));
     </script>
+    <br />
+
+    6. map으로 합성하기
+    <script>
+      const f = (x) => x + 10;
+      const g = (x) => x - 5;
+      const fg = (x) => f(g(x));
+
+      _.go([], L.map(fg), _.each(console.log));
+    </script>
   </body>
 </html>
