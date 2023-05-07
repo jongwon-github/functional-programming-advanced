@@ -32,5 +32,36 @@
         console.log
       );
     </script>
+    <br />
+
+    2. entries
+    <script>
+      L.entries = function* (obj) {
+        for (const k in obj) {
+          yield [k, obj[k]];
+        }
+      };
+
+      var it = L.entries(obj1);
+      console.log([...it]);
+
+      _.go(obj1, L.entries, _.take(2), console.log);
+
+      _.go(
+        obj1,
+        L.entries,
+        L.filter(([_, v]) => v % 2),
+        _.each(console.log)
+      );
+
+      _.go(
+        obj1,
+        L.entries,
+        L.filter(([_, v]) => v % 2),
+        L.map(([k, v]) => ({ [k]: v })),
+        _.reduce(Object.assign),
+        console.log
+      );
+    </script>
   </body>
 </html>
